@@ -25,5 +25,8 @@ public class ProductValidator implements IValidator<Product> {
         if(product.getMin() > product.getMax()){
             err += "The minimum number of products must be less or equal with the maximum number of products!\n";
         }
+        if (err.length() > 0){
+            throw new ValidatorException(err);
+        }
     }
 }

@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import static inventory.controller.MainScreenController.getModifyPartIndex;
 
@@ -26,13 +27,9 @@ import static inventory.controller.MainScreenController.getModifyPartIndex;
 public class ModifyPartController implements Initializable, Controller {
     
     // Declare field
-    private Stage stage;
-    private Parent scene;
     private int partIndex= getModifyPartIndex();
-    private String errorMessage = new String();
     private boolean isOutsourced;
-    private int partId;
-
+    private Logger logger = Logger.getLogger(ModifyPartController.class.getName());
     private InventoryService service;
     
     @FXML
@@ -65,8 +62,6 @@ public class ModifyPartController implements Initializable, Controller {
     @FXML
     private TextField minTxt;
 
-    public ModifyPartController(){}
-
     public void setService(InventoryService service){
         this.service=service;
         fillWithData();
@@ -75,7 +70,6 @@ public class ModifyPartController implements Initializable, Controller {
     private void fillWithData(){
         Part part = service.getAllParts().get(partIndex);
 
-        partId = service.getAllParts().get(partIndex).getPartId();
         partIdTxt.setText(Integer.toString(part.getPartId()));
         nameTxt.setText(part.getName());
         inventoryTxt.setText(Integer.toString(part.getInStock()));
@@ -102,7 +96,7 @@ public class ModifyPartController implements Initializable, Controller {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        // to do
     }
 
     /**
@@ -113,10 +107,9 @@ public class ModifyPartController implements Initializable, Controller {
      */
     @FXML
     private void displayScene(ActionEvent event, String source) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         FXMLLoader loader= new FXMLLoader(getClass().getResource(source));
-        //scene = FXMLLoader.load(getClass().getResource(source));
-        scene = loader.load();
+        Parent scene = loader.load();
         Controller ctrl=loader.getController();
         ctrl.setService(service);
         stage.setScene(new Scene(scene));
@@ -159,11 +152,11 @@ public class ModifyPartController implements Initializable, Controller {
         alert.setHeaderText("Confirm Cancellation");
         alert.setContentText("Are you sure you want to cancel modifying part " + nameTxt.getText() + "?");
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.get() == ButtonType.OK) {
-            System.out.println("Ok selected. Part modification cancelled.");
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            logger.info("Ok selected. Part modification cancelled.");
             displayScene(event, "/fxml/MainScreen.fxml");
         } else {
-            System.out.println("Cancel clicked. Please complete part modification.");
+            logger.info("Cancel clicked. Please complete part modification.");
         }
     }
 
@@ -182,7 +175,7 @@ public class ModifyPartController implements Initializable, Controller {
         String min = minTxt.getText();
         String max = maxTxt.getText();
         String partDynamicValue = modifyPartDynamicTxt.getText();
-        errorMessage = "";
+        String errorMessage = "";
         
         try {
             errorMessage = Part.isValidPart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), errorMessage);
@@ -193,7 +186,7 @@ public class ModifyPartController implements Initializable, Controller {
                 alert.setContentText(errorMessage);
                 alert.showAndWait();
             } else {
-                if(isOutsourced == true) {
+                if(isOutsourced) {
                     service.updateOutsourcedPart(partIndex, Integer.parseInt(partId), name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), partDynamicValue);
                 } else {
                     service.updateInhousePart(partIndex, Integer.parseInt(partId), name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(partDynamicValue));
@@ -202,7 +195,7 @@ public class ModifyPartController implements Initializable, Controller {
             }
             
         } catch (NumberFormatException e) {
-            System.out.println("Blank Fields");
+            logger.info("Blank Fields");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Adding Part!");
             alert.setHeaderText("Error");

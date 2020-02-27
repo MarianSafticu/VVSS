@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import static inventory.controller.MainScreenController.getModifyProductIndex;
 
@@ -27,13 +28,10 @@ import static inventory.controller.MainScreenController.getModifyProductIndex;
 public class ModifyProductController implements Initializable, Controller {
     
     // Declare fields
-    private Stage stage;
-    private Parent scene;
     private ObservableList<Part> addParts = FXCollections.observableArrayList();
-    private String errorMessage = new String();
     private int productId;
     private int productIndex = getModifyProductIndex();
-
+    private Logger logger = Logger.getLogger(ModifyProductController.class.getName());
     private InventoryService service;
 
     @FXML
@@ -87,8 +85,6 @@ public class ModifyProductController implements Initializable, Controller {
     @FXML
     private TableColumn<Part, Double> deleteProductPriceCol;
 
-    public ModifyProductController(){}
-
     public void setService(InventoryService service){
         this.service=service;
         fillWithData();
@@ -123,7 +119,7 @@ public class ModifyProductController implements Initializable, Controller {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        // to do
     }
 
 
@@ -135,10 +131,9 @@ public class ModifyProductController implements Initializable, Controller {
      */
     @FXML
     private void displayScene(ActionEvent event, String source) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         FXMLLoader loader= new FXMLLoader(getClass().getResource(source));
-        //scene = FXMLLoader.load(getClass().getResource(source));
-        scene = loader.load();
+        Parent scene = loader.load();
         Controller ctrl=loader.getController();
         ctrl.setService(service);
         stage.setScene(new Scene(scene));
@@ -172,11 +167,11 @@ public class ModifyProductController implements Initializable, Controller {
         alert.setContentText("Are you sure you want to delete part " + part.getName() + " from parts?");
         Optional<ButtonType> result = alert.showAndWait();
 
-        if (result.get() == ButtonType.OK) {
-            System.out.println("Part deleted.");
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            logger.info("Part deleted.");
             addParts.remove(part);
         } else {
-            System.out.println("Canceled part deletion.");
+            logger.info("Canceled part deletion.");
         }
     }
     
@@ -206,11 +201,11 @@ public class ModifyProductController implements Initializable, Controller {
         alert.setHeaderText("Confirm Cancelation");
         alert.setContentText("Are you sure you want to cancel modifying product?");
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.get() == ButtonType.OK) {
-            System.out.println("Ok selected. Product modification canceled.");
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            logger.info("Ok selected. Product modification canceled.");
             displayScene(event, "/fxml/MainScreen.fxml");
         } else {
-            System.out.println("Cancel clicked.");
+            logger.info("Cancel clicked.");
         }
     }
 
@@ -227,7 +222,7 @@ public class ModifyProductController implements Initializable, Controller {
         String inStock = inventoryTxt.getText();
         String min = minTxt.getText();
         String max = maxTxt.getText();
-        errorMessage = "";
+        String errorMessage = "";
         
         try {
             errorMessage = Product.isValidProduct(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts, errorMessage);
@@ -242,7 +237,7 @@ public class ModifyProductController implements Initializable, Controller {
                 displayScene(event, "/fxml/MainScreen.fxml");
             }
         } catch (NumberFormatException e) {
-            System.out.println("Form contains blank field.");
+            logger.info("Form contains blank field.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Adding Product!");
             alert.setHeaderText("Error!");
