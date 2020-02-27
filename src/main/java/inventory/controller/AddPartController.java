@@ -63,7 +63,6 @@ public class AddPartController implements Initializable, Controller {
 
     @Override
     public void setService(InventoryService service){
-
         this.service=service;
     }
 

@@ -19,7 +19,7 @@ public class InventoryRepository {
 		readProducts();
 	}
 
-	public void readParts(){
+	private void readParts(){
 		ClassLoader classLoader = InventoryRepository.class.getClassLoader();
 		File file = new File(classLoader.getResource(filename).getFile());
 		ObservableList<Part> listP = FXCollections.observableArrayList();
@@ -71,7 +71,7 @@ public class InventoryRepository {
 		return item;
 	}
 
-	public void readProducts(){
+	private void readProducts(){
 		ClassLoader classLoader = InventoryRepository.class.getClassLoader();
 		File file = new File(classLoader.getResource(filename).getFile());
 
@@ -123,7 +123,7 @@ public class InventoryRepository {
 		return product;
 	}
 
-	public void writeAll() {
+	private void writeAll() {
 
 		ClassLoader classLoader = InventoryRepository.class.getClassLoader();
 		File file = new File(classLoader.getResource(filename).getFile());
