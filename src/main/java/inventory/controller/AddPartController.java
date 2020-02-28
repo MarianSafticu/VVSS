@@ -1,6 +1,5 @@
 package inventory.controller;
 
-import inventory.model.Part;
 import inventory.service.InventoryService;
 import inventory.service.ServiceException;
 import javafx.event.ActionEvent;
@@ -158,7 +157,7 @@ public class AddPartController implements Initializable, Controller {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Adding Part!");
             alert.setHeaderText("Error!");
-            alert.setContentText("Form contains blank field.");
+            alert.setContentText("Price, Inventory, Min and Max must be numbers.");
             alert.showAndWait();
         }catch (ServiceException e){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

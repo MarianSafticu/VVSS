@@ -1,7 +1,6 @@
 package inventory.controller;
 
 import inventory.model.Part;
-import inventory.model.Product;
 import inventory.service.InventoryService;
 import inventory.service.ServiceException;
 import javafx.collections.FXCollections;
@@ -205,7 +204,7 @@ public class AddProductController implements Initializable, Controller {
             service.addProduct(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts);
             displayScene(event, "/fxml/MainScreen.fxml");
         } catch (NumberFormatException e) {
-            logger.info("Form contains blank field.");
+            logger.info("Price, Inventory, Min and Max must be numbers.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Adding Product!");
             alert.setHeaderText(errHeader);

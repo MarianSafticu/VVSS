@@ -9,8 +9,6 @@ import inventory.validator.ProductValidator;
 import inventory.validator.ValidatorException;
 import javafx.collections.ObservableList;
 
-import javax.xml.validation.Validator;
-
 public class InventoryService {
 
     private InventoryRepository repo;
@@ -103,7 +101,7 @@ public class InventoryService {
             productValidator.validate(product);
             repo.updateProduct(productIndex, product);
         }catch (RepoException | ValidatorException e){
-            throw new ServiceException("The product could not be updated!\n"+e.getMessage());
+            throw new ServiceException("The product could not be updated!%n"+e.getMessage());
         }
     }
 
@@ -111,7 +109,7 @@ public class InventoryService {
         try {
             repo.deletePart(part);
         }catch (RepoException e){
-            throw new ServiceException("The product could not be updated!\n"+e.getMessage());
+            throw new ServiceException("The product could not be updated!%n"+e.getMessage());
         }
     }
 

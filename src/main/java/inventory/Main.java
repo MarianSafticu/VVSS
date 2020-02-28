@@ -20,8 +20,10 @@ public class Main extends Application {
         Logger logger = Logger.getLogger(AddPartController.class.getName());
         InventoryRepository repo= new InventoryRepository();
         InventoryService service = new InventoryService(repo);
-        logger.info(service.getAllProducts().toString());
-        logger.info(service.getAllParts().toString());
+        String products = service.getAllProducts().toString();
+        logger.info(products);
+        String parts = service.getAllParts().toString();
+        logger.info(parts);
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/fxml/MainScreen.fxml"));
 
         Parent root=loader.load();

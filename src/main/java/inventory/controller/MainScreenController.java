@@ -36,9 +36,15 @@ public class MainScreenController implements Initializable,Controller {
     public static int getModifyPartIndex() {
         return modifyPartIndex;
     }
-    
+    public static void setModifyPartIndex(int index) {
+        modifyPartIndex = index;
+    }
+
     public static int getModifyProductIndex() {
         return modifyProductIndex;
+    }
+    public static void setModifyProductIndex(int index) {
+        modifyProductIndex = index;
     }
 
     private InventoryService service;
@@ -184,9 +190,11 @@ public class MainScreenController implements Initializable,Controller {
 
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 service.deleteProduct(product);
-                logger.info(String.format("Product %s was removed.", product.getName()));
+                String msg = String.format("Product %s was removed.", product.getName());
+                logger.info(msg);
             } else {
-                logger.info(String.format("Product %s was not removed.", product.getName()));
+                String msg = String.format("Product %s was removed.", product.getName());
+                logger.info(msg);
             }
         } catch (ServiceException e) {
             Alert alert = new Alert(AlertType.ERROR);
@@ -234,7 +242,7 @@ public class MainScreenController implements Initializable,Controller {
             alert.showAndWait();
             return;
         }
-        modifyPartIndex = service.getAllParts().indexOf(modifyPart);
+        MainScreenController.setModifyPartIndex(service.getAllParts().indexOf(modifyPart));
 
         displayScene(event, "/fxml/ModifyPart.fxml");
     }
@@ -255,7 +263,7 @@ public class MainScreenController implements Initializable,Controller {
             alert.showAndWait();
             return;
         }
-        modifyProductIndex = service.getAllProducts().indexOf(modifyProduct);
+        MainScreenController.setModifyProductIndex(service.getAllProducts().indexOf(modifyProduct));
 
         displayScene(event, "/fxml/ModifyProduct.fxml");
     }
