@@ -25,7 +25,9 @@ import java.util.logging.Logger;
 
 
 public class MainScreenController implements Initializable,Controller {
-    
+    //Sonar
+    private String errHeader = "Error!";
+
      // Declare fields
     private static int modifyPartIndex;
     private static int modifyProductIndex;
@@ -126,19 +128,34 @@ public class MainScreenController implements Initializable,Controller {
     @FXML
     void handleDeletePart(ActionEvent event) {
         Part part = partsTableView.getSelectionModel().getSelectedItem();
+        if(part == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!!!");
+            alert.setHeaderText(errHeader);
+            alert.setContentText("A part must be selected from the table to be deleted!");
+            alert.showAndWait();
+            return;
+        }
+        try {
 
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.initModality(Modality.NONE);
-        alert.setTitle("Confirmation");
-        alert.setHeaderText("Confirm Part Deletion?");
-        alert.setContentText("Are you sure you want to delete part " + part.getName() + " from parts?");
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if(result.isPresent() && result.get() == ButtonType.OK) {
-            logger.info("Part deleted.");
-            service.deletePart(part);
-        } else {
-            logger.info("Canceled part deletion.");
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.initModality(Modality.NONE);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Confirm Part Deletion?");
+            alert.setContentText("Are you sure you want to delete part " + part.getName() + " from parts?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                logger.info("Part deleted.");
+                service.deletePart(part);
+            } else {
+                logger.info("Canceled part deletion.");
+            }
+        } catch (ServiceException e) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Searching Part!!");
+            alert.setHeaderText(errHeader);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
     }
 
@@ -149,19 +166,34 @@ public class MainScreenController implements Initializable,Controller {
     @FXML
     void handleDeleteProduct(ActionEvent event) {
         Product product = productsTableView.getSelectionModel().getSelectedItem();
-        
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.initModality(Modality.NONE);
-        alert.setTitle("Confirmation");
-        alert.setHeaderText("Confirm Product Deletion?");
-        alert.setContentText("Are you sure you want to delete product " + product.getName() + " from products?");
-        Optional<ButtonType> result = alert.showAndWait();
+        if(product == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!!!");
+            alert.setHeaderText(errHeader);
+            alert.setContentText("A product must be selected from the table to be deleted!");
+            alert.showAndWait();
+            return;
+        }
+        try {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.initModality(Modality.NONE);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Confirm Product Deletion?");
+            alert.setContentText("Are you sure you want to delete product " + product.getName() + " from products?");
+            Optional<ButtonType> result = alert.showAndWait();
 
-        if(result.isPresent() && result.get() == ButtonType.OK) {
-            service.deleteProduct(product);
-            logger.info(String.format("Product {} was removed.", product.getName()));
-        } else {
-            logger.info(String.format("Product {} was not removed.", product.getName()));
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                service.deleteProduct(product);
+                logger.info(String.format("Product %s was removed.", product.getName()));
+            } else {
+                logger.info(String.format("Product %s was not removed.", product.getName()));
+            }
+        } catch (ServiceException e) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error Searching Part!");
+            alert.setHeaderText(errHeader);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
     }
 
@@ -194,8 +226,16 @@ public class MainScreenController implements Initializable,Controller {
     @FXML
     void handleModifyPart(ActionEvent event) throws IOException {
         Part modifyPart = partsTableView.getSelectionModel().getSelectedItem();
+        if(modifyPart == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!!");
+            alert.setHeaderText(errHeader);
+            alert.setContentText("A part must be selected from the table to be updated!");
+            alert.showAndWait();
+            return;
+        }
         modifyPartIndex = service.getAllParts().indexOf(modifyPart);
-        
+
         displayScene(event, "/fxml/ModifyPart.fxml");
     }
 
@@ -207,8 +247,16 @@ public class MainScreenController implements Initializable,Controller {
     @FXML
     void handleModifyProduct(ActionEvent event) throws IOException {
         Product modifyProduct = productsTableView.getSelectionModel().getSelectedItem();
+        if(modifyProduct == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error!!");
+            alert.setHeaderText("Error!");
+            alert.setContentText("A product must be selected from the table to be updated!");
+            alert.showAndWait();
+            return;
+        }
         modifyProductIndex = service.getAllProducts().indexOf(modifyProduct);
-        
+
         displayScene(event, "/fxml/ModifyProduct.fxml");
     }
 
@@ -244,7 +292,7 @@ public class MainScreenController implements Initializable,Controller {
         } catch (ServiceException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Searching Part!");
-            alert.setHeaderText("Error!");
+            alert.setHeaderText(errHeader);
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
@@ -262,7 +310,7 @@ public class MainScreenController implements Initializable,Controller {
         } catch (ServiceException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Searching Product!");
-            alert.setHeaderText("Error!");
+            alert.setHeaderText(errHeader);
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }

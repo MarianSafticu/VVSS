@@ -176,8 +176,7 @@ public class ModifyPartController implements Initializable, Controller {
         String min = minTxt.getText();
         String max = maxTxt.getText();
         String partDynamicValue = modifyPartDynamicTxt.getText();
-        String errorMessage = "";
-        
+
         try {
             if(isOutsourced) {
                 service.updateOutsourcedPart(partIndex, Integer.parseInt(partId), name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), partDynamicValue);
@@ -187,13 +186,13 @@ public class ModifyPartController implements Initializable, Controller {
             displayScene(event, "/fxml/MainScreen.fxml");
         } catch (NumberFormatException e) {
             logger.info("Blank Fields");
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Adding Part!");
             alert.setHeaderText("Error");
-            alert.setContentText("Form contains blank field.");
+            alert.setContentText("Inventory, Price, Min, Max and Machine Id must be numbers");
             alert.showAndWait();
         } catch (ServiceException e) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Updating Part!");
             alert.setHeaderText("Error!");
             alert.setContentText(e.getMessage());

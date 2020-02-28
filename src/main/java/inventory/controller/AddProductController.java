@@ -25,12 +25,14 @@ import java.util.logging.Logger;
 
 
 public class AddProductController implements Initializable, Controller {
-    
+    //sonar
+    private String errHeader = "Error!";
+
     // Declare fields
     private ObservableList<Part> addParts = FXCollections.observableArrayList();
     private Logger logger = Logger.getLogger(AddProductController.class.getName());
     private InventoryService service;
-    
+
     @FXML
     private TextField minTxt;
 
@@ -199,7 +201,6 @@ public class AddProductController implements Initializable, Controller {
         String inStock = inventoryTxt.getText();
         String min = minTxt.getText();
         String max = maxTxt.getText();
-        String errorMessage = "";
         try {
             service.addProduct(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts);
             displayScene(event, "/fxml/MainScreen.fxml");
@@ -207,8 +208,8 @@ public class AddProductController implements Initializable, Controller {
             logger.info("Form contains blank field.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Adding Product!");
-            alert.setHeaderText("Error!");
-            alert.setContentText("Form contains blank field.");
+            alert.setHeaderText(errHeader);
+            alert.setContentText("Price, Inventory, Min and Max must be numbers.");
             alert.showAndWait();
         } catch (ServiceException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -232,7 +233,7 @@ public class AddProductController implements Initializable, Controller {
         } catch (ServiceException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Searching Part!");
-            alert.setHeaderText("Error!");
+            alert.setHeaderText(errHeader);
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
