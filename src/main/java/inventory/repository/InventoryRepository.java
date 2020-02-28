@@ -6,24 +6,29 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.*;
+import java.net.URL;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
 public class InventoryRepository {
 
 	private static String filename = "data/items.txt";
+	private static String filenameErr = "The file"+filename+"does not exist!\n";
 	private Inventory inventory;
 	private static Logger logger= Logger.getLogger(InventoryRepository.class.getName());
 
-	public InventoryRepository(){
+	public InventoryRepository() throws RepoException{
 		this.inventory=new Inventory();
 		readParts();
 		readProducts();
 	}
 
-	private void readParts(){
+	private void readParts() throws RepoException {
 		ClassLoader classLoader = InventoryRepository.class.getClassLoader();
-		File file = new File(classLoader.getResource(filename).getFile());
+		URL resource = classLoader.getResource(filename);
+		if (resource == null) throw new RepoException(filenameErr);
+		File file = new File(resource.getFile());
+
 		ObservableList<Part> listP = FXCollections.observableArrayList();
 		try(BufferedReader br = new BufferedReader(new FileReader(file))) {
 			String line = null;
@@ -68,9 +73,11 @@ public class InventoryRepository {
 		return item;
 	}
 
-	private void readProducts(){
+	private void readProducts() throws RepoException{
 		ClassLoader classLoader = InventoryRepository.class.getClassLoader();
-		File file = new File(classLoader.getResource(filename).getFile());
+		URL resource = classLoader.getResource(filename);
+		if (resource == null) throw new RepoException(filenameErr);
+		File file = new File(resource.getFile());
 
 		ObservableList<Product> listP = FXCollections.observableArrayList();
 		try(BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -115,10 +122,12 @@ public class InventoryRepository {
 		return product;
 	}
 
-	private void writeAll() {
+	private void writeAll() throws RepoException {
 
 		ClassLoader classLoader = InventoryRepository.class.getClassLoader();
-		File file = new File(classLoader.getResource(filename).getFile());
+		URL resource = classLoader.getResource(filename);
+		if (resource == null) throw new RepoException(filenameErr);
+		File file = new File(resource.getFile());
 
 		ObservableList<Part> parts=inventory.getAllParts();
 		ObservableList<Product> products=inventory.getProducts();
@@ -152,12 +161,12 @@ public class InventoryRepository {
 		}
 	}
 
-	public void addPart(Part part){
+	public void addPart(Part part) throws RepoException{
 		inventory.addPart(part);
 		writeAll();
 	}
 
-	public void addProduct(Product product){
+	public void addProduct(Product product) throws RepoException{
 		inventory.addProduct(product);
 		writeAll();
 	}
@@ -208,12 +217,12 @@ public class InventoryRepository {
 		}
 	}
 
-	public void deletePart(Part part){
+	public void deletePart(Part part) throws RepoException{
 		inventory.deletePart(part);
 		writeAll();
 	}
 
-	public void deleteProduct(Product product){
+	public void deleteProduct(Product product) throws RepoException{
 		inventory.removeProduct(product);
 		writeAll();
 	}

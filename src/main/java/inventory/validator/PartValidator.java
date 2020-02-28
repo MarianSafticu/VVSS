@@ -14,8 +14,7 @@ public class PartValidator implements IValidator<Part> {
         if(part.getPrice() < 0.01) {
             errorMessage += "The price must be greater than 0. ";
         }
-        //todo: error in logic
-        if(part.getInStock() < 1) {
+        if(part.getInStock() < 0) {
             errorMessage += "Inventory level must be greater than 0. ";
         }
         if(part.getMin() > part.getMax()) {

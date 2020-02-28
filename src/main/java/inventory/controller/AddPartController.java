@@ -144,30 +144,27 @@ public class AddPartController implements Initializable, Controller {
         String min = minTxt.getText();
         String max = maxTxt.getText();
         String partDynamicValue = addPartDynamicTxt.getText();
-        String errorMessage = "";
-        
+
         try {
-            try {
-               if(isOutsourced) {
-                    service.addOutsourcePart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), partDynamicValue);
-                } else {
-                    service.addInhousePart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(partDynamicValue));
-                }
-                displayScene(event, "/fxml/MainScreen.fxml");
-            }catch (ServiceException e){
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error Adding Part!");
-                alert.setHeaderText("Error!");
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
+            if (isOutsourced) {
+                service.addOutsourcePart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), partDynamicValue);
+            } else {
+                service.addInhousePart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(partDynamicValue));
             }
-            
+            displayScene(event, "/fxml/MainScreen.fxml");
+
         } catch (NumberFormatException e) {
-            logger.info("Form contains blank field.");
+            logger.info("Inventory, Price, Min, Max and Machine Id must be numbers");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Adding Part!");
             alert.setHeaderText("Error!");
             alert.setContentText("Form contains blank field.");
+            alert.showAndWait();
+        }catch (ServiceException e){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error Adding Part!");
+            alert.setHeaderText("Error!");
+            alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
     }

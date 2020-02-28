@@ -26,30 +26,30 @@ public class InventoryService {
         InhousePart inhousePart = new InhousePart(repo.getAutoPartId(), name, price, inStock, min, max, partDynamicValue);
         try{
             partValidator.validate(inhousePart);
-        }catch (ValidatorException e){
+            repo.addPart(inhousePart);
+        }catch (ValidatorException | RepoException e){
             throw new ServiceException("The part could not be added!\n"+e.getMessage());
         }
-        repo.addPart(inhousePart);
     }
 
     public void addOutsourcePart(String name, double price, int inStock, int min, int  max, String partDynamicValue) throws ServiceException{
         OutsourcedPart outsourcedPart = new OutsourcedPart(repo.getAutoPartId(), name, price, inStock, min, max, partDynamicValue);
         try{
             partValidator.validate(outsourcedPart);
-        }catch (ValidatorException e){
+            repo.addPart(outsourcedPart);
+        }catch (ValidatorException | RepoException e){
             throw new ServiceException("The part could not be added!\n"+e.getMessage());
         }
-        repo.addPart(outsourcedPart);
     }
 
     public void addProduct(String name, double price, int inStock, int min, int  max, ObservableList<Part> addParts) throws ServiceException{
         Product product = new Product(repo.getAutoProductId(), name, price, inStock, min, max, addParts);
         try{
             productValidator.validate(product);
-        }catch (ValidatorException e){
+            repo.addProduct(product);
+        }catch (ValidatorException | RepoException e){
             throw new ServiceException("The product could not be added!\n"+e.getMessage());
         }
-        repo.addProduct(product);
     }
 
     public ObservableList<Part> getAllParts() {
@@ -107,12 +107,20 @@ public class InventoryService {
         }
     }
 
-    public void deletePart(Part part){
-        repo.deletePart(part);
+    public void deletePart(Part part) throws ServiceException {
+        try {
+            repo.deletePart(part);
+        }catch (RepoException e){
+            throw new ServiceException("The product could not be updated!\n"+e.getMessage());
+        }
     }
 
-    public void deleteProduct(Product product){
-        repo.deleteProduct(product);
+    public void deleteProduct(Product product) throws ServiceException {
+        try {
+            repo.deleteProduct(product);
+        }catch (RepoException e){
+            throw new ServiceException("The product could not be updated!\n"+e.getMessage());
+        }
     }
 
 }

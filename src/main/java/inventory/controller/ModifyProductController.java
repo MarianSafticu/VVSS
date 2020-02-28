@@ -223,8 +223,7 @@ public class ModifyProductController implements Initializable, Controller {
         String inStock = inventoryTxt.getText();
         String min = minTxt.getText();
         String max = maxTxt.getText();
-        String errorMessage = "";
-        
+
         try {
             service.updateProduct(productIndex, productId, name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts);
             displayScene(event, "/fxml/MainScreen.fxml");
@@ -232,8 +231,8 @@ public class ModifyProductController implements Initializable, Controller {
             logger.info("Form contains blank field.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Adding Product!");
-            alert.setHeaderText("Error!");
-            alert.setContentText("Form contains blank field.");
+            alert.setHeaderText("Error!!");
+            alert.setContentText("Price, Inventory, Min and Max must be numbers.");
             alert.showAndWait();
         } catch (ServiceException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
