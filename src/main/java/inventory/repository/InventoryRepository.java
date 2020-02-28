@@ -178,22 +178,34 @@ public class InventoryRepository {
 		return inventory.getProducts();
 	}
 
-	public Part lookupPart (String search){
-		return inventory.lookupPart(search);
+	public Part lookupPart (String search) throws RepoException{
+		Part part = inventory.lookupPart(search);
+		if(part == null) throw new RepoException("The part does not exist!\n");
+		return part;
 	}
 
-	public Product lookupProduct (String search){
-		return inventory.lookupProduct(search);
+	public Product lookupProduct (String search) throws RepoException{
+		Product product = inventory.lookupProduct(search);
+		if( product == null ) throw new RepoException("The product does not exists\n");
+		return product;
 	}
 
-	public void updatePart(int partIndex, Part part){
-		inventory.updatePart(partIndex, part);
-		writeAll();
+	public void updatePart(int partIndex, Part part) throws RepoException{
+		try{
+			inventory.updatePart(partIndex, part);
+			writeAll();
+		}catch (IndexOutOfBoundsException e){
+			throw new RepoException("Invalid index for the part!\n");
+		}
 	}
 
-	public void updateProduct(int productIndex, Product product){
-		inventory.updateProduct(productIndex, product);
-		writeAll();
+	public void updateProduct(int productIndex, Product product) throws RepoException {
+		try {
+			inventory.updateProduct(productIndex, product);
+			writeAll();
+		}catch (IndexOutOfBoundsException e){
+			throw new RepoException("Invalid index for the prouct !\n");
+		}
 	}
 
 	public void deletePart(Part part){

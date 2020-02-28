@@ -6,27 +6,29 @@ public class PartValidator implements IValidator<Part> {
 
     @Override
     public void validate(Part part) throws ValidatorException {
-        String err = "";
-        if (part.getPrice() < 0.01){
-            err += "Price must be bigger than 0.01!\n";
+        String errorMessage = "";
+
+        if(part.getName().equals("")) {
+            errorMessage += "A name has not been entered. ";
         }
-        if(part.getName().equals("")){
-            err += "Name of the part cannot be empty!\n";
+        if(part.getPrice() < 0.01) {
+            errorMessage += "The price must be greater than 0. ";
         }
-        if(part.getInStock() < 0){
-            err += "Number of parts in stock cannot be negative!\n";
+        //todo: error in logic
+        if(part.getInStock() < 1) {
+            errorMessage += "Inventory level must be greater than 0. ";
         }
-        if(part.getMin() < 0){
-            err += "The minimum number of parts cannot be negative!\n";
+        if(part.getMin() > part.getMax()) {
+            errorMessage += "The Min value must be less than the Max value. ";
         }
-        if(part.getMax() < 0){
-            err += "The maximum number of parts cannot be negative!\n";
+        if(part.getInStock() < part.getMin()) {
+            errorMessage += "Inventory level is lower than minimum value. ";
         }
-        if(part.getMin() > part.getMax()){
-            err += "The minimum number of parts must be less or equal with the maximum number of parts!\n";
+        if(part.getInStock() > part.getMax()) {
+            errorMessage += "Inventory level is higher than the maximum value. ";
         }
-        if (err.length() > 0){
-            throw new ValidatorException(err);
+        if (errorMessage.length() > 0){
+            throw new ValidatorException(errorMessage);
         }
     }
 }

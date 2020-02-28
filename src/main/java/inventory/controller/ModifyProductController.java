@@ -3,6 +3,7 @@ package inventory.controller;
 import inventory.model.Part;
 import inventory.model.Product;
 import inventory.service.InventoryService;
+import inventory.service.ServiceException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -225,23 +226,20 @@ public class ModifyProductController implements Initializable, Controller {
         String errorMessage = "";
         
         try {
-            errorMessage = Product.isValidProduct(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts, errorMessage);
-            if(errorMessage.length() > 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error Adding Part!");
-                alert.setHeaderText("Error!");
-                alert.setContentText(errorMessage);
-                alert.showAndWait();
-            } else {
-                service.updateProduct(productIndex, productId, name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts);
-                displayScene(event, "/fxml/MainScreen.fxml");
-            }
+            service.updateProduct(productIndex, productId, name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts);
+            displayScene(event, "/fxml/MainScreen.fxml");
         } catch (NumberFormatException e) {
             logger.info("Form contains blank field.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Adding Product!");
             alert.setHeaderText("Error!");
             alert.setContentText("Form contains blank field.");
+            alert.showAndWait();
+        } catch (ServiceException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Adding Product!");
+            alert.setHeaderText("Error!");
+            alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
     }
@@ -252,8 +250,16 @@ public class ModifyProductController implements Initializable, Controller {
      */
     @FXML
     void handleSearchProduct(ActionEvent event) {
-        String x = productSearchTxt.getText();
-        addProductTableView.getSelectionModel().select(service.lookupPart(x));
+        try {
+            String x = productSearchTxt.getText();
+            addProductTableView.getSelectionModel().select(service.lookupPart(x));
+        } catch (ServiceException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Searching Part!");
+            alert.setHeaderText("Error!");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
 
 

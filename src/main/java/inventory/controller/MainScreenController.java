@@ -4,6 +4,7 @@ package inventory.controller;
 import inventory.model.Part;
 import inventory.model.Product;
 import inventory.service.InventoryService;
+import inventory.service.ServiceException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -237,8 +238,16 @@ public class MainScreenController implements Initializable,Controller {
      */
     @FXML
     void handlePartsSearchBtn(ActionEvent event) {
-        String x = partsSearchTxt.getText();
-        partsTableView.getSelectionModel().select(service.lookupPart(x));
+        try{
+            String x = partsSearchTxt.getText();
+            partsTableView.getSelectionModel().select(service.lookupPart(x));
+        } catch (ServiceException e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error Searching Part!");
+            alert.setHeaderText("Error!");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     /**
@@ -247,8 +256,16 @@ public class MainScreenController implements Initializable,Controller {
      */
     @FXML
     void handleProductsSearchBtn(ActionEvent event) {
-        String x = productsSearchTxt.getText();
-        productsTableView.getSelectionModel().select(service.lookupProduct(x));
+        try {
+            String x = productsSearchTxt.getText();
+            productsTableView.getSelectionModel().select(service.lookupProduct(x));
+        } catch (ServiceException e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error Searching Product!");
+            alert.setHeaderText("Error!");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
 
 

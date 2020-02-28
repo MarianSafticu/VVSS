@@ -2,6 +2,7 @@ package inventory.controller;
 
 import inventory.model.Part;
 import inventory.service.InventoryService;
+import inventory.service.ServiceException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -146,20 +147,19 @@ public class AddPartController implements Initializable, Controller {
         String errorMessage = "";
         
         try {
-            errorMessage = Part.isValidPart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), errorMessage);
-            if(errorMessage.length() > 0) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Error Adding Part!");
-                alert.setHeaderText("Error!");
-                alert.setContentText(errorMessage);
-                alert.showAndWait();
-            } else {
+            try {
                if(isOutsourced) {
                     service.addOutsourcePart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), partDynamicValue);
                 } else {
                     service.addInhousePart(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), Integer.parseInt(partDynamicValue));
                 }
                 displayScene(event, "/fxml/MainScreen.fxml");
+            }catch (ServiceException e){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error Adding Part!");
+                alert.setHeaderText("Error!");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
             }
             
         } catch (NumberFormatException e) {

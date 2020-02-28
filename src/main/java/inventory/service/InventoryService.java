@@ -2,29 +2,53 @@ package inventory.service;
 
 import inventory.model.*;
 import inventory.repository.InventoryRepository;
+import inventory.repository.RepoException;
+import inventory.validator.PartValidator;
+import inventory.validator.IValidator;
+import inventory.validator.ProductValidator;
+import inventory.validator.ValidatorException;
 import javafx.collections.ObservableList;
+
+import javax.xml.validation.Validator;
 
 public class InventoryService {
 
     private InventoryRepository repo;
+    private IValidator<Part> partValidator = new PartValidator();
+    private IValidator<Product> productValidator = new ProductValidator();
 
     public InventoryService(InventoryRepository repo){
         this.repo =repo;
     }
 
 
-    public void addInhousePart(String name, double price, int inStock, int min, int  max, int partDynamicValue){
+    public void addInhousePart(String name, double price, int inStock, int min, int  max, int partDynamicValue) throws ServiceException{
         InhousePart inhousePart = new InhousePart(repo.getAutoPartId(), name, price, inStock, min, max, partDynamicValue);
+        try{
+            partValidator.validate(inhousePart);
+        }catch (ValidatorException e){
+            throw new ServiceException("The part could not be added!\n"+e.getMessage());
+        }
         repo.addPart(inhousePart);
     }
 
-    public void addOutsourcePart(String name, double price, int inStock, int min, int  max, String partDynamicValue){
+    public void addOutsourcePart(String name, double price, int inStock, int min, int  max, String partDynamicValue) throws ServiceException{
         OutsourcedPart outsourcedPart = new OutsourcedPart(repo.getAutoPartId(), name, price, inStock, min, max, partDynamicValue);
+        try{
+            partValidator.validate(outsourcedPart);
+        }catch (ValidatorException e){
+            throw new ServiceException("The part could not be added!\n"+e.getMessage());
+        }
         repo.addPart(outsourcedPart);
     }
 
-    public void addProduct(String name, double price, int inStock, int min, int  max, ObservableList<Part> addParts){
+    public void addProduct(String name, double price, int inStock, int min, int  max, ObservableList<Part> addParts) throws ServiceException{
         Product product = new Product(repo.getAutoProductId(), name, price, inStock, min, max, addParts);
+        try{
+            productValidator.validate(product);
+        }catch (ValidatorException e){
+            throw new ServiceException("The product could not be added!\n"+e.getMessage());
+        }
         repo.addProduct(product);
     }
 
@@ -36,27 +60,51 @@ public class InventoryService {
         return repo.getAllProducts();
     }
 
-    public Part lookupPart(String search) {
-        return repo.lookupPart(search);
+    public Part lookupPart(String search) throws ServiceException{
+        try {
+            return repo.lookupPart(search);
+        }catch (RepoException e){
+            throw new ServiceException(e.getMessage());
+        }
     }
 
-    public Product lookupProduct(String search) {
-        return repo.lookupProduct(search);
+    public Product lookupProduct(String search) throws ServiceException {
+        try{
+           return repo.lookupProduct(search);
+        }catch (RepoException e){
+            throw new ServiceException(e.getMessage());
+        }
+
     }
 
-    public void updateInhousePart(int partIndex, int partId, String name, double price, int inStock, int min, int max, int partDynamicValue){
-        InhousePart inhousePart = new InhousePart(partId, name, price, inStock, min, max, partDynamicValue);
-        repo.updatePart(partIndex, inhousePart);
+    public void updateInhousePart(int partIndex, int partId, String name, double price, int inStock, int min, int max, int partDynamicValue) throws ServiceException {
+        try {
+            InhousePart inhousePart = new InhousePart(partId, name, price, inStock, min, max, partDynamicValue);
+            partValidator.validate(inhousePart);
+            repo.updatePart(partIndex, inhousePart);
+        } catch (RepoException | ValidatorException e){
+            throw new ServiceException("The part could not be updated!\n"+e.getMessage());
+        }
     }
 
-    public void updateOutsourcedPart(int partIndex, int partId, String name, double price, int inStock, int min, int max, String partDynamicValue){
-        OutsourcedPart outsourcedPart = new OutsourcedPart(partId, name, price, inStock, min, max, partDynamicValue);
-        repo.updatePart(partIndex, outsourcedPart);
+    public void updateOutsourcedPart(int partIndex, int partId, String name, double price, int inStock, int min, int max, String partDynamicValue) throws ServiceException {
+        try {
+            OutsourcedPart outsourcedPart = new OutsourcedPart(partId, name, price, inStock, min, max, partDynamicValue);
+            partValidator.validate(outsourcedPart);
+            repo.updatePart(partIndex, outsourcedPart);
+        }catch (RepoException | ValidatorException e){
+            throw new ServiceException("The part could not be updated!\n"+e.getMessage());
+        }
     }
 
-    public void updateProduct(int productIndex, int productId, String name, double price, int inStock, int min, int max, ObservableList<Part> addParts){
-        Product product = new Product(productId, name, price, inStock, min, max, addParts);
-        repo.updateProduct(productIndex, product);
+    public void updateProduct(int productIndex, int productId, String name, double price, int inStock, int min, int max, ObservableList<Part> addParts) throws ServiceException {
+        try {
+            Product product = new Product(productId, name, price, inStock, min, max, addParts);
+            productValidator.validate(product);
+            repo.updateProduct(productIndex, product);
+        }catch (RepoException | ValidatorException e){
+            throw new ServiceException("The product could not be updated!\n"+e.getMessage());
+        }
     }
 
     public void deletePart(Part part){

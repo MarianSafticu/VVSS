@@ -6,27 +6,37 @@ public class ProductValidator implements IValidator<Product> {
 
     @Override
     public void validate(Product product) throws ValidatorException {
-        String err = "";
-        if (product.getPrice() < 0.01){
-            err += "Price must be bigger than 0.01!\n";
+        String errorMessage = "";
+        double sumOfParts = 0.00;
+        for (int i = 0; i < product.getAssociatedParts().size(); i++) {
+            sumOfParts += product.getAssociatedParts().get(i).getPrice();
         }
-        if(product.getName().equals("")){
-            err += "Name of the product cannot be empty!\n";
+        if (product.getName().equals("")) {
+            errorMessage += "A name has not been entered. ";
         }
-        if(product.getInStock() < 0){
-            err += "Number of products in stock cannot be negative!\n";
+        if (product.getMin() < 0) {
+            errorMessage += "The inventory level must be greater than 0. ";
         }
-        if(product.getMin() < 0){
-            err += "The minimum number of products cannot be negative!\n";
+        if (product.getMin() < 0.01) {
+            errorMessage += "The price must be greater than $0. ";
         }
-        if(product.getMax() < 0){
-            err += "The maximum number of products cannot be negative!\n";
+        if (product.getMin() > product.getMax()) {
+            errorMessage += "The Min value must be less than the Max value. ";
         }
-        if(product.getMin() > product.getMax()){
-            err += "The minimum number of products must be less or equal with the maximum number of products!\n";
+        if(product.getInStock() < product.getMin()) {
+            errorMessage += "Inventory level is lower than minimum value. ";
         }
-        if (err.length() > 0){
-            throw new ValidatorException(err);
+        if(product.getInStock() > product.getMax()) {
+            errorMessage += "Inventory level is higher than the maximum value. ";
+        }
+        if (product.getAssociatedParts().isEmpty()) {
+            errorMessage += "Product must contain at least 1 part. ";
+        }
+        if (sumOfParts > product.getPrice()) {
+            errorMessage += "Product price must be greater than cost of parts. ";
+        }
+        if (errorMessage.length() > 0){
+            throw new ValidatorException(errorMessage);
         }
     }
 }
