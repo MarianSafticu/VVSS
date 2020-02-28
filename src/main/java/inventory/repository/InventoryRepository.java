@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class InventoryRepository {
 
 	private static String filename = "data/items.txt";
-	private static String filenameErr = "The file"+filename+"does not exist!\n";
+	private static String filenameErr = "The file \""+filename+"\" does not exist!\n";
 	private Inventory inventory;
 	private static Logger logger= Logger.getLogger(InventoryRepository.class.getName());
 
