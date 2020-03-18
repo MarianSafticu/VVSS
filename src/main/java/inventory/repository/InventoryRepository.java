@@ -23,6 +23,13 @@ public class InventoryRepository {
 		readProducts();
 	}
 
+    public InventoryRepository(String filename) throws RepoException{
+        this.filename = filename;
+	    this.inventory=new Inventory();
+        readParts();
+        readProducts();
+    }
+
 	private void readParts() throws RepoException {
 		ClassLoader classLoader = InventoryRepository.class.getClassLoader();
 		URL resource = classLoader.getResource(filename);
