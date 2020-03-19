@@ -4,6 +4,7 @@ import inventory.model.Part;
 import inventory.repository.InventoryRepository;
 import inventory.repository.RepoException;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 
@@ -47,7 +48,7 @@ class InventoryServiceTest {
     @Test
     void addPartGoodInStock() {
         assertDoesNotThrow(() -> service.addOutsourcePart(name, 10, 5, min, max, companyName));
-        assertDoesNotThrow(() -> service.lookupPart(name));
+        Assertions.assertDoesNotThrow(() -> service.lookupPart(name));
     }
     @Test
     void addPartBadInStock() {
@@ -56,7 +57,7 @@ class InventoryServiceTest {
     @Test
     void addPartGoodPrice() {
         assertDoesNotThrow(() -> service.addOutsourcePart(name, 5.5, 20, min, max, companyName));
-        assertDoesNotThrow(() -> service.lookupPart(name));
+        Assertions.assertDoesNotThrow(() -> service.lookupPart(name));
     }
     @Test
     void addPartBadPrice() {
@@ -66,7 +67,7 @@ class InventoryServiceTest {
     @Test
     void addPartGoodInStockBVA() {
         assertDoesNotThrow(() -> service.addOutsourcePart(name, 10, 0, min, max, companyName));
-        assertDoesNotThrow(() -> service.lookupPart(name));
+        Assertions.assertDoesNotThrow(() -> service.lookupPart(name));
     }
     @Test
     void addPartBadInStockBVA() {
@@ -75,7 +76,7 @@ class InventoryServiceTest {
     @Test
     void addPartGoodPriceBVA() {
         assertDoesNotThrow(() -> service.addOutsourcePart(name, 0.01, 20, min, max, companyName));
-        assertDoesNotThrow(() -> service.lookupPart(name));
+        Assertions.assertDoesNotThrow(() -> service.lookupPart(name));
     }
     @Test
     void addPartBadPriceBVA() {
