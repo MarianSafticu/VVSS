@@ -1,15 +1,12 @@
 package inventory.service;
 
-import inventory.model.Part;
 import inventory.repository.InventoryRepository;
 import inventory.repository.RepoException;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-
 import java.io.*;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,22 +16,22 @@ class InventoryServiceTest {
     String companyName= "CompanyX";
     int min = 0;
     int max= 100;
-
+    private Logger logger = Logger.getLogger(InventoryServiceTest.class.getName());
     String filename = "data/test_items.txt";
 
-    InventoryRepository repo;
-    {
+    InventoryService initService(){
         try {
-            repo = new InventoryRepository(filename);
+            InventoryRepository repo = new InventoryRepository(filename);
+            return new InventoryService(repo);
         } catch (RepoException e) {
-            e.printStackTrace();
+            logger.info(e.getMessage());
+            return null;
         }
     }
-    InventoryService service = new InventoryService(repo);
+    InventoryService service = initService();
 
     @AfterEach
-    void RemovePart(){
-
+    void removePart(){
         ClassLoader classLoader = InventoryRepository.class.getClassLoader();
         URL resource = classLoader.getResource(filename);
         File file = new File(resource.getFile());
@@ -42,13 +39,14 @@ class InventoryServiceTest {
         try(BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
             bw.write("");
         } catch (IOException e) {
+            logger.info(e.getMessage());
         }
     }
 
     @Test
     void addPartGoodInStock() {
         assertDoesNotThrow(() -> service.addOutsourcePart(name, 10, 5, min, max, companyName));
-        Assertions.assertDoesNotThrow(() -> service.lookupPart(name));
+        assertDoesNotThrow(() -> service.lookupPart(name));
     }
     @Test
     void addPartBadInStock() {
@@ -57,7 +55,7 @@ class InventoryServiceTest {
     @Test
     void addPartGoodPrice() {
         assertDoesNotThrow(() -> service.addOutsourcePart(name, 5.5, 20, min, max, companyName));
-        Assertions.assertDoesNotThrow(() -> service.lookupPart(name));
+        assertDoesNotThrow(() -> service.lookupPart(name));
     }
     @Test
     void addPartBadPrice() {
@@ -67,7 +65,7 @@ class InventoryServiceTest {
     @Test
     void addPartGoodInStockBVA() {
         assertDoesNotThrow(() -> service.addOutsourcePart(name, 10, 0, min, max, companyName));
-        Assertions.assertDoesNotThrow(() -> service.lookupPart(name));
+        assertDoesNotThrow(() -> service.lookupPart(name));
     }
     @Test
     void addPartBadInStockBVA() {
@@ -76,7 +74,7 @@ class InventoryServiceTest {
     @Test
     void addPartGoodPriceBVA() {
         assertDoesNotThrow(() -> service.addOutsourcePart(name, 0.01, 20, min, max, companyName));
-        Assertions.assertDoesNotThrow(() -> service.lookupPart(name));
+        assertDoesNotThrow(() -> service.lookupPart(name));
     }
     @Test
     void addPartBadPriceBVA() {
