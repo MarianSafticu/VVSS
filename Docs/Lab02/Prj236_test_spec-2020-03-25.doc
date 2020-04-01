@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>testspec Prj236 - sdir2394_BBT</title>
+<link type="text/css" rel="stylesheet" href="http://www.scs.ubbcluj.ro/testlink/gui/themes/default/css/tl_documents.css" />
+<style type="text/css" media="print">.notprintable { display:none;}</style>
+</head>
+<body>
+<div>
+<div style="float:right;">TestLink Community [configure $tlCfg-&gt;document_generator-&gt;company_name]</div>
+<div>&nbsp;</div><hr />
+<p style="text-align: center;"><img alt="TestLink logo" title="configure using $tlCfg->document_generator->company_logo" height="53" src="http://www.scs.ubbcluj.ro/testlink/gui/themes/default/images/tl-logo-transparent-25.png" /></div>
+<div class="doc_title"><p>Test Specification</p></div>
+<div class="doc_title" style="text-align:left;margin: auto;"><p>Test Project: Prj236<br>Test Suite: Prj236 - sdir2394_BBT</p></div>
+<div class="summary"><p id="printedby">Printed by TestLink on 25/03/2020</p></div>
+<div class="pagefooter" id="copyright">2012 &copy; TestLink Community</div>
+<h1 class="general" style="page-break-before: always">Table Of Contents</h1><div class="toc"><b><p style="padding-left: 20px;"><a href="#toc_1">1. sdir2394_BBT</a></p></b>
+<p style="padding-left: 45px;"><a href="#toc_tc39642">Prj236-1: TestCase1_ECP</a></p><p style="padding-left: 45px;"><a href="#toc_tc39648">Prj236-4: TestCase2_ECP</a></p><p style="padding-left: 45px;"><a href="#toc_tc39644">Prj236-2: TestCase3_ECP</a></p><p style="padding-left: 45px;"><a href="#toc_tc39650">Prj236-5: TestCase4_ECP</a></p><p style="padding-left: 45px;"><a href="#toc_tc39662">Prj236-6: TestCase5_BVA</a></p><p style="padding-left: 45px;"><a href="#toc_tc39667">Prj236-8: TestCase6_BVA</a></p><p style="padding-left: 45px;"><a href="#toc_tc39665">Prj236-7: TestCase7_BVA</a></p><p style="padding-left: 45px;"><a href="#toc_tc39671">Prj236-9: TestCase8_BVA</a></p></div><h1 class="doclevel" >Scope</h1>
+<div class="txtlevel"><p>
+	Testing project for group 236</p></div>
+ <br/><a name='toc_1'></a>
+<h1 class='doclevel'>1. Test Suite : sdir2394_BBT</h1>
+<a name="toc_tc39642"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-1: TestCase1_ECP</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca o piesa cu numarul de bucati existente intr-un anumit interval se adauga.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Numarul de bucati este in intervalul [0,MAX_INT].</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >addPartGoodInStock</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc39648"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-4: TestCase2_ECP</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca numarul de bucati este validat corect in caz de valoare negativa.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Numarul de bucati este negativ.</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >addPartBadInStock</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc39644"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-2: TestCase3_ECP</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca o piesa cu pretul intr-un anumit interval se adauga.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Pretul se afla in intervalul [0.01,MAX_DOUBLE].</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >addPartGoodPrice</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc39650"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-5: TestCase4_ECP</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca pretul este validat corect in caz de valoare mai mica de 0.01.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Pretul &lt; 0.01.</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >addPartBadPrice</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc39662"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-6: TestCase5_BVA</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca numarul de bucati este validat corect in cazul valorii -1.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Numarul de bucati este -1.</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >addPartBadInStockBVA</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc39667"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-8: TestCase6_BVA</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca o piesa cu numarul de bucati 1 se adauga.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Numarul de bucati este 1.</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >addPartGoodInStockBVA</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc39665"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-7: TestCase7_BVA</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca o piesa cu pretul pe limita inferioara (0.01) se adauga.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Pretul este egal cu 0.01.</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >addPartGoodPriceBVA</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc39671"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-9: TestCase8_BVA</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca pretul avand valoarea 0 este validat corect.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Pretul este egal cu 0.</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >addPartBadPriceBVA</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+
+</body>
+</html>
