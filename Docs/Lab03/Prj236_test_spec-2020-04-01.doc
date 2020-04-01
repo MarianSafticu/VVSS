@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>testspec Prj236 - sdir2394_WBT</title>
+<link type="text/css" rel="stylesheet" href="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/css/tl_documents.css" />
+<style type="text/css" media="print">.notprintable { display:none;}</style>
+</head>
+<body>
+<div>
+<div style="float:right;">TestLink Community [configure $tlCfg-&gt;document_generator-&gt;company_name]</div>
+<div>&nbsp;</div><hr />
+<p style="text-align: center;"><img alt="TestLink logo" title="configure using $tlCfg->document_generator->company_logo" height="53" src="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/images/tl-logo-transparent-25.png" /></div>
+<div class="doc_title"><p>Test Specification</p></div>
+<div class="doc_title" style="text-align:left;margin: auto;"><p>Test Project: Prj236<br>Test Suite: Prj236 - sdir2394_WBT</p></div>
+<div class="summary"><p id="printedby">Printed by TestLink on 01/04/2020</p></div>
+<div class="pagefooter" id="copyright">2012 &copy; TestLink Community</div>
+<h1 class="general" style="page-break-before: always">Table Of Contents</h1><div class="toc"><b><p style="padding-left: 20px;"><a href="#toc_1">1. sdir2394_WBT</a></p></b>
+<p style="padding-left: 45px;"><a href="#toc_tc42341">Prj236-102: TestCase1</a></p><p style="padding-left: 45px;"><a href="#toc_tc42338">Prj236-101: TestCase2</a></p><p style="padding-left: 45px;"><a href="#toc_tc42352">Prj236-103: TestCase3</a></p><p style="padding-left: 45px;"><a href="#toc_tc42358">Prj236-104: TestCase4</a></p></div><h1 class="doclevel" >Scope</h1>
+<div class="txtlevel"><p>
+	Testing project for group 236</p></div>
+ <br/><a name='toc_1'></a>
+<h1 class='doclevel'>1. Test Suite : sdir2394_WBT</h1>
+<a name="toc_tc42341"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-102: TestCase1</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Caută o piesă după un string vid.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	searchItem = &quot;&quot;</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >searchEmptyString</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" >InventoryTest</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F02:  Lab03<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc42338"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-101: TestCase2</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Cauta o piesa dupa nume (piesa cu acel nume se afla pe prima pozitie in lista cu piese).</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	<span style="background-color: rgb(238, 238, 238); font-family: &quot;Trebuchet MS&quot;, Arial, Verdana, sans-serif; font-size: 11.7px;">searchItem:</span>&nbsp;string.</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >searchGoodPartByName</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" >InventoryTest</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F02:  Lab03<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc42352"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-103: TestCase3</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Cauta o piesa dupa id (piesa cu acel id se afla pe prima pozitie in lista cu piese).</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	searchItem: string</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >searchGoodPartByID</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" >InventoryTest</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F02:  Lab03<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc42358"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-104: TestCase4</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Cauta o piesa dupa nume sau id (nu exista nicio piesa cu acel nume sau acel id).</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	searchItem: string</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >searchNonExistentPart</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" >InventoryTest</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F02:  Lab03<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+
+</body>
+</html>
