@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>testspec Prj236 - sdir2394_IntT</title>
+<link type="text/css" rel="stylesheet" href="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/css/tl_documents.css" />
+<style type="text/css" media="print">.notprintable { display:none;}</style>
+</head>
+<body>
+<div>
+<div style="float:right;">TestLink Community [configure $tlCfg-&gt;document_generator-&gt;company_name]</div>
+<div>&nbsp;</div><hr />
+<p style="text-align: center;"><img alt="TestLink logo" title="configure using $tlCfg->document_generator->company_logo" height="53" src="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/images/tl-logo-transparent-25.png" /></div>
+<div class="doc_title"><p>Test Specification</p></div>
+<div class="doc_title" style="text-align:left;margin: auto;"><p>Test Project: Prj236<br>Test Suite: Prj236 - sdir2394_IntT</p></div>
+<div class="summary"><p id="printedby">Printed by TestLink on 15/04/2020</p></div>
+<div class="pagefooter" id="copyright">2012 &copy; TestLink Community</div>
+<h1 class="general" style="page-break-before: always">Table Of Contents</h1><div class="toc"><b><p style="padding-left: 20px;"><a href="#toc_1">1. sdir2394_IntT</a></p></b>
+<p style="padding-left: 45px;"><a href="#toc_tc46586">Prj236-148: TestCase1</a></p><p style="padding-left: 45px;"><a href="#toc_tc46588">Prj236-149: TestCase2</a></p><p style="padding-left: 45px;"><a href="#toc_tc46590">Prj236-150: TestCase3</a></p><p style="padding-left: 45px;"><a href="#toc_tc46592">Prj236-151: TestCase4</a></p><p style="padding-left: 45px;"><a href="#toc_tc46594">Prj236-152: TestCase5</a></p><p style="padding-left: 45px;"><a href="#toc_tc46596">Prj236-153: TestCase6</a></p></div><h1 class="doclevel" >Scope</h1>
+<div class="txtlevel"><p>
+	Testing project for group 236</p></div>
+ <br/><a name='toc_1'></a>
+<h1 class='doclevel'>1. Test Suite : sdir2394_IntT</h1>
+<a name="toc_tc46586"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-148: TestCase1</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca o piesa cu numarul de bucati existente intr-un anumit interval se adauga.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Numarul de bucati este in intervalul [0,MAX_INT].</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Automated</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >inventory.service.ServiceTest#addPartGoodInStockMock</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" >inventory.service.ServiceTest</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc46588"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-149: TestCase2</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca numarul de bucati este validat corect in caz de valoare negativa.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Numarul de bucati este negativ.</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Automated</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >inventory.service.ServiceTest#addPartBadInStockMock</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" >inventory.service.ServiceTest</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc46590"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-150: TestCase3</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca o piesa cu numarul de bucati existente intr-un anumit interval se adauga.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Numarul de bucati este in intervalul [0,MAX_INT].</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Automated</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >inventory.service.IntegrationRepoTest#addPartGoodInStockMock</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" >inventory.service.IntegrationRepoTest</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc46592"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-151: TestCase4</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca numarul de bucati este validat corect in caz de valoare negativa.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Numarul de bucati este negativ.</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Automated</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >inventory.service.IntegrationRepoTest#addPartBadInStockMock</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" >inventory.service.IntegrationRepoTest</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc46594"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-152: TestCase5</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca o piesa cu numarul de bucati existente intr-un anumit interval se adauga.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Numarul de bucati este in intervalul [0,MAX_INT].</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Automated</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >inventory.service.IntegrationEntityTest#addPartBadInStockMock</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" >inventory.service.IntegrationEntityTest</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+<a name="toc_tc46596"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="3">Test Case Prj236-153: TestCase6</th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="2">sdir2394</td></tr>
+<tr><td colspan="3"><span class="label">Summary:</span><br /><p>
+	Verificare daca numarul de bucati este validat corect in caz de valoare negativa.</p>
+</td></tr><tr><td colspan="3"><span class="label">Preconditions:</span><br /><p>
+	Numarul de bucati este negativ.</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="2">Automated</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="2"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="2">Medium</td></tr>
+<tr><td colspan="3"></td></tr><tr><td > name of the test method:</td><td  colspan = "2" >inventory.service.IntegrationEntityTest#addPartBadInStockMock</td></tr>
+<tr><td > name of the autotest class:</td><td  colspan = "2" >inventory.service.IntegrationEntityTest</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="2">sdir2394_F01:  Lab02<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span><td colspan="2">&nbsp;None<br></td></tr>
+</table>
+</div>
+
+</body>
+</html>
