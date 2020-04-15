@@ -129,7 +129,7 @@ public class InventoryRepository {
 		return product;
 	}
 
-	private void writeAll() throws RepoException {
+	public void writeAll() throws RepoException {
 
 		ClassLoader classLoader = InventoryRepository.class.getClassLoader();
 		URL resource = classLoader.getResource(filename);
