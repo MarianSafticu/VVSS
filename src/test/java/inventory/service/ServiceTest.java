@@ -37,11 +37,11 @@ public class ServiceTest {
 
     @Test
     void addPartGoodInStockMock() {
-        OutsourcedPart outsourcedPart = new OutsourcedPart(repo.getAutoPartId(), name, 10, 5, min, max, companyName);
+        OutsourcedPart outsourcedPart = new OutsourcedPart(repo.getAutoPartId(), "a", 1, 1, 1, 1, "a");
         try {
             Mockito.doNothing().when(repo).addPart(outsourcedPart);
-            assertDoesNotThrow(() -> service.addOutsourcePart(name, 10, 5, min, max, companyName));
-            assertDoesNotThrow(() -> service.lookupPart(name));
+            assertDoesNotThrow(() -> service.addOutsourcePart("a", 1, 1, 1, 1, "a"));
+            assertDoesNotThrow(() -> service.lookupPart("a"));
         } catch (RepoException e) {
             e.printStackTrace();
         }
@@ -49,10 +49,10 @@ public class ServiceTest {
     @Test
     void addPartBadInStockMock() {
         Mockito.when(repo.getAutoPartId()).thenReturn(2);
-        OutsourcedPart outsourcedPart = new OutsourcedPart(repo.getAutoPartId(), name, 10, -500, min, max, companyName);
+        OutsourcedPart outsourcedPart = new OutsourcedPart(repo.getAutoPartId(),"a", 1, 1, -1, 1, "a");
         try {
             Mockito.doThrow(new RepoException()).when(repo).addPart(outsourcedPart);
-            assertThrows(ServiceException.class,() -> service.addOutsourcePart(name, 10, -500, min, max, companyName));
+            assertThrows(ServiceException.class,() -> service.addOutsourcePart("a", 1, 1, -1, 1, "a"));
         } catch (RepoException e) {
             e.printStackTrace();
         }
